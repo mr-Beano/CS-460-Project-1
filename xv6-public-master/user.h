@@ -23,6 +23,7 @@ int getpid(void);
 char* sbrk(int);
 int sleep(int);
 int uptime(void);
+int trace(void);    // Dean Feller HW1 P1
 
 // ulib.c
 int stat(const char*, struct stat*);

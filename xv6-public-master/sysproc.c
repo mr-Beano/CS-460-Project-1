@@ -89,3 +89,12 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+
+// Dean Feller HW1 P1
+
+// Toggle the tracing of syscalls
+int sys_trace(void) {
+  trace();
+  return 1;
+}

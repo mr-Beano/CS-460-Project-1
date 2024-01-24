@@ -120,6 +120,7 @@ void            userinit(void);
 int             wait(void);
 void            wakeup(void*);
 void            yield(void);
+void            trace(void);    // Dean Feller HW1 P1
 
 // swtch.S
 void            swtch(struct context**, struct context*);
