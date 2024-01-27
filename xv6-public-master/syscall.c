@@ -156,7 +156,14 @@ static char (*syscallnames[]) = {
 [SYS_trace]   "trace",
 };
 
-extern int trace_syscalls;  // Dean Feller HW1 P1
+// Dean Feller HW1 P1
+int trace_syscalls = 0; // 1 when enabled, 0 when not
+
+// Toggle tracing of syscalls
+extern int sys_trace(void) {
+  trace_syscalls = !trace_syscalls;
+  return 1;
+}
 
 void
 syscall(void)

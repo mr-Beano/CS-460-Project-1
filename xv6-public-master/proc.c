@@ -532,11 +532,3 @@ procdump(void)
     cprintf("\n");
   }
 }
-
-// Dean Feller HW1 P1
-int trace_syscalls = 0; // 1 when syscall tracing is enabled, 0 when disabled
-
-// Toggle the tracing of syscalls
-void trace(void) {
-  trace_syscalls = !trace_syscalls;
-}
