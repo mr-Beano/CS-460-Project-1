@@ -29,4 +29,4 @@ SYSCALL(getpid)
 SYSCALL(sbrk)
 SYSCALL(sleep)
 SYSCALL(uptime)
-SYSCALL(trace)  // Dean Feller HW1 P1
+SYSCALL(trace)  // Dean Feller

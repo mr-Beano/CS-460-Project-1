@@ -103,7 +103,7 @@ extern int sys_unlink(void);
 extern int sys_wait(void);
 extern int sys_write(void);
 extern int sys_uptime(void);
-extern int sys_trace(void);   // Dean Feller HW1 P1
+extern int sys_trace(void);   // Dean Feller
 
 static int (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
@@ -127,10 +127,10 @@ static int (*syscalls[])(void) = {
 [SYS_link]    sys_link,
 [SYS_mkdir]   sys_mkdir,
 [SYS_close]   sys_close,
-[SYS_trace]   sys_trace,  // Dean Feller HW1 P1
+[SYS_trace]   sys_trace,  // Dean Feller
 };
 
-// Dean Feller HW1 P1
+// Dean Feller
 static char (*syscallnames[]) = {
 [SYS_fork]    "fork",
 [SYS_exit]    "exit",
@@ -156,7 +156,7 @@ static char (*syscallnames[]) = {
 [SYS_trace]   "trace",
 };
 
-// Dean Feller HW1 P1
+// Dean Feller
 int trace_syscalls = 0; // 1 when enabled, 0 when not
 
 // Toggle tracing of syscalls
@@ -175,7 +175,7 @@ syscall(void)
   if(num > 0 && num < NELEM(syscalls) && syscalls[num]) {
     curproc->tf->eax = syscalls[num]();
 
-    if (trace_syscalls) cprintf("%s -> %d\n", syscallnames[num], curproc->tf->eax); // Dean Feller HW1 P1
+    if (trace_syscalls) cprintf("%s -> %d\n", syscallnames[num], curproc->tf->eax); // Dean Feller
   } 
   else {
     cprintf("%d %s: unknown sys call %d\n",
