@@ -9,7 +9,7 @@ int main() {
 
     struct uproc* table = malloc(NPROC * sizeof(struct uproc));
     if (!table) {
-        return -1;
+        exit();
     }
 
     getprocs(NPROC, table);

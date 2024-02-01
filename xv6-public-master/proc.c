@@ -535,10 +535,47 @@ procdump(void)
 }
 
 // Dean Feller
-// Get the current processes from the ptable and fill out the uproc table
+// Get the current processes and print their info
 int getprocs(int max, struct uproc* table) {
+  static char *states[] = {
+  [UNUSED]    "unused",
+  [EMBRYO]    "embryo",
+  [SLEEPING]  "sleeping",
+  [RUNNABLE]  "runnable",
+  [RUNNING]   "running",
+  [ZOMBIE]    "zombie"
+  };
 
-  cprintf("GET PROCESSES\n");
+  // Fill out the uproc table with info from the ptable
+  for (int i = 0; i < max; i++) {
+    struct proc* proc = &ptable.proc[i];
 
-  return 0;
+    table[i].pid = proc->pid;
+
+    // If parent state is valid, the parent must be valid and has an id, otherwise there is no parent so assign -1
+    table[i].ppid = proc->parent->state >= 0 && proc->parent->state <= 5 ? proc->parent->pid : -1;
+
+    table[i].state = proc->state;
+    table[i].sz = proc->sz;
+    
+    // Copy the process name
+    for (int j = 0; j < sizeof(table[i].name); j++) {
+      table[i].name[j] = proc->name[j];
+    }
+  }
+
+  cprintf("PID  PPID  STATE  SIZE  NAME\n");  // Print header
+
+  int numprocs = 0;
+
+  // Print the info for each process
+  for (int i = 0; i < max; i++) {
+    struct uproc* proc = &table[i];
+    if (proc->state == UNUSED) continue; // If the current process doesn't exist, move on to the next
+
+    cprintf("%d  %d  %s  %d  %s\n", proc->pid, proc->ppid, states[proc->state], proc->sz, proc->name);
+    numprocs++;
+  }
+
+  return numprocs;
 }
