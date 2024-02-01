@@ -6,6 +6,7 @@
 #include "x86.h"
 #include "proc.h"
 #include "spinlock.h"
+#include "uproc.h"
 
 struct {
   struct spinlock lock;
@@ -531,4 +532,13 @@ procdump(void)
     }
     cprintf("\n");
   }
+}
+
+// Dean Feller
+// Get the current processes from the ptable and fill out the uproc table
+int getprocs(int max, struct uproc* table) {
+
+  cprintf("GET PROCESSES\n");
+
+  return 0;
 }
