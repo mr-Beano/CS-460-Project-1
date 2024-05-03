@@ -2,6 +2,9 @@ CS 460 - Operating Systems
 Project 1 - Syscall tracing and ps command
 Dean Feller - 2/1/2024
 
+To run xv6, use: make qemu-nox
+To stop xv6, in another terminal use: pkill qemu
+
 Part 1: syscall tracing
 
 	Modified files:
